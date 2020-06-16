@@ -6,7 +6,9 @@
   "scripts": {
     "clear": "rm -rf dist/",
     "build": "webpack --env.production",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "test": "jest",
+    "test:coverage": "jest --coverage --collectCoverageFrom=./src/**/*.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
