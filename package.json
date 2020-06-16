@@ -1,0 +1,35 @@
+{
+  "name": "meetfps",
+  "version": "0.0.1",
+  "description": "A simple game for VR meetings",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rm -rf dist/",
+    "build": "webpack --env.production",
+    "dev": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "file-loader": "^6.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TurajlicLabs/MeetFPS.git"
+  },
+  "keywords": [
+    "meet",
+    "fps"
+  ],
+  "author": "TurajlicLabs",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/TurajlicLabs/MeetFPS/issues"
+  },
+  "homepage": "https://github.com/TurajlicLabs/MeetFPS#readme"
+}
