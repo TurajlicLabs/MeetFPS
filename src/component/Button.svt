@@ -1,0 +1,5 @@
+<button class="btn" on:click>{value}</button>
+
+<script>
+    export let value;
+</script>

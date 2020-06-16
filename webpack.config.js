@@ -1,7 +1,10 @@
-const path = require( 'path' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const merge = require( 'webpack-merge' );
+const path = require( 'path' );
 
-module.exports = (env) => {
+module.exports = ( env ) => {
+    const build = env && env.production ? 'prod' : 'dev';
+
     let config = {
         entry: {
             main: path.join( __dirname, 'src', 'index' )
@@ -9,6 +12,7 @@ module.exports = (env) => {
 
         output: {
             filename: 'bundle.js',
+            chunkFilename: '[name].[id].js',
             path: path.join( __dirname, 'dist' )
         },
 
@@ -26,16 +30,42 @@ module.exports = (env) => {
                     options: {
                         name: '[name].[ext]',
                     },
+                },
+                {
+                    test: /\.svt$/,
+                    use: {
+                        loader: 'svelte-loader',
+                        options: {
+                            emitCss: true,
+                            hotReload: true
+                        }
+                    }
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                        /**
+                         * MiniCssExtractPlugin doesn't support HMR.
+                         * For developing, use 'style-loader' instead.
+                         * */
+                        build === 'prod' ? MiniCssExtractPlugin.loader : 'style-loader',
+                        'css-loader'
+                    ]
                 }
             ]
         },
 
-        plugins: [],
+        plugins: [
+            new MiniCssExtractPlugin( {
+                filename: '[name].css'
+            } )
+        ],
 
         resolve: {
             alias: {
                 '@': path.join( __dirname, 'src' ),
-                '@public': path.join( __dirname, 'public' )
+                '@public': path.join( __dirname, 'public' ),
+                'svelte': path.resolve( 'node_modules', 'svelte' ),
             }
         },
 
@@ -45,13 +75,12 @@ module.exports = (env) => {
     };
 
     // Builds
-    const build = env && env.production ? 'prod' : 'dev';
     config = merge.smart(
         config,
         require( path.join( __dirname, 'config', 'build', `${ build }.config` ) )
     );
 
-    console.log(`Build mode: \x1b[33m${ config.mode }\x1b[0m`);
+    console.log( `Build mode: \x1b[33m${ config.mode }\x1b[0m` );
 
     return config;
 };
