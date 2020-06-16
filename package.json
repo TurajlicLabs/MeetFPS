@@ -1,49 +1,61 @@
 {
   "name": "meetfps",
-  "version": "0.0.1",
-  "description": "A simple game for VR meetings",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "clear": "rm -rf dist/",
-    "build": "webpack --env.production",
-    "dev": "webpack-dev-server",
-    "test": "jest",
-    "test:coverage": "jest --coverage --collectCoverageFrom=./src/**/*.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "@types/jest": "^26.0.0",
-    "babel-loader": "^8.1.0",
-    "cross-env": "^7.0.2",
-    "css-loader": "^3.6.0",
-    "file-loader": "^6.0.0",
-    "jest": "^26.0.1",
-    "mini-css-extract-plugin": "^0.9.0",
-    "serve": "^11.3.2",
-    "style-loader": "^1.2.1",
-    "svelte": "^3.23.2",
-    "svelte-loader": "^2.13.6",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^4.2.2"
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-router": "~4.4.0",
+    "@vue/cli-plugin-unit-jest": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "@vue/test-utils": "^1.0.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TurajlicLabs/MeetFPS.git"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
-  "keywords": [
-    "meet",
-    "fps"
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
   ],
-  "author": "TurajlicLabs",
-  "license": "Unlicense",
-  "bugs": {
-    "url": "https://github.com/TurajlicLabs/MeetFPS/issues"
-  },
-  "homepage": "https://github.com/TurajlicLabs/MeetFPS#readme",
-  "dependencies": {
-    "spectre.css": "^0.5.8"
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest"
   }
 }
